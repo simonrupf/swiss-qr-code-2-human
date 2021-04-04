@@ -21,10 +21,10 @@ fi
 check_command zbarimg zbar-tools
 check_command awk gawk
 
-if [ ! -f $1 ]
+if [ ! -f "$1" ]
 then
     echo >&2 "$1 is not a readable file"
     exit 2
 fi
 
-zbarimg -q $1 | awk -f swiss-qr-decode.awk
+zbarimg -q "$1" | awk -f $(dirname $0)/swiss-qr-decode.awk
