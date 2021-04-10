@@ -1,7 +1,7 @@
-Swiss QR code 2 human
+Swiss QR bill 2 human
 =====================
 
-Formats the contents of an image containing a Swiss QR Bill code into human
+Formats the contents of an image containing a Swiss QR bill code into human
 readable output.
 
 Requirements (package names in Debian/Ubuntu):
@@ -28,6 +28,10 @@ This should let you easily copy paste the output.
 
 For testing the script, try the following sample Swiss QR Bills:
 https://www.paymentstandards.ch/dam/downloads/muster-qr-zahlteile-de.zip
+
+If you just need to view the contents of a QR code, without installing any
+software, you can use this online QR bill code validation tool:
+https://www.swiss-qr-invoice.org/validator/
 
 Further information, including the above documents, can be found at:
 https://www.paymentstandards.ch/de/home/software-partner.html
