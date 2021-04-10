@@ -48,7 +48,18 @@ then
 fi
 
 script_path="$(dirname $(realpath "$0"))"
-awk_script="$script_path/swiss-qr-decode.awk"
+awk_script="$script_path/swiss-qr-decode-en.awk"
+case "$LANG" in
+    de*)
+        awk_script="$script_path/swiss-qr-decode-de.awk"
+    ;;
+    fr*)
+        awk_script="$script_path/swiss-qr-decode-fr.awk"
+    ;;
+    it*)
+        awk_script="$script_path/swiss-qr-decode-it.awk"
+    ;;
+esac
 if [ ! -f "$awk_script" ]
 then
     echo >&2 "$awk_script is not a readable file"
