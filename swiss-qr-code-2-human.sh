@@ -67,7 +67,7 @@ then
 fi
 
 img_uri=file://$(urlencode "$(realpath "$1")")
-if message=$(java -jar "$script_path/zxing-javase-3.4.1-jar-with-dependencies.jar" "$img_uri")
+if message=$(java -Dfile.encoding=UTF-8 -jar "$script_path/zxing-javase-3.4.1-jar-with-dependencies.jar" "$img_uri")
 then
     case "$message" in
         *"format: QR_CODE, type: TEXT"*)
