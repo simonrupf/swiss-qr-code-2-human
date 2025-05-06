@@ -1,7 +1,7 @@
 #!/bin/sh
 
 usage () {
-    echo "Usage: $0 <path-to-image-containing-qr-code>"
+    echo "Usage: $(basename $0) [path-to-image-containing-qr-code]"
     exit 0
 }
 
@@ -32,7 +32,7 @@ urlencode () {
     done
 }
 
-if [ $# -ne 1 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]
+if [ $# -ne 1 -a -t 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]
 then
     usage
 fi
@@ -41,7 +41,7 @@ check_command awk gawk
 check_command java default-jre-headless
 check_command realpath coreutils
 
-if [ ! -f "$1" ]
+if [ ! -f "$1" -a -t 0 ]
 then
     echo >&2 "$1 is not a readable file"
     exit 2
@@ -64,6 +64,12 @@ if [ ! -f "$awk_script" ]
 then
     echo >&2 "$awk_script is not a readable file"
     exit 3
+fi
+
+if [ ! -t 0 ]
+then
+    { echo; echo; cat -; } | awk -f "$awk_script"
+    exit 0
 fi
 
 img_uri=file://$(urlencode "$(realpath "$1")")
